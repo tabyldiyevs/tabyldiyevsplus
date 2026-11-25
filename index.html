@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ваше Имя — разработчик игр, сайтов и ботов</title>
+<title>tabyldiyevs — разработчик игр, сайтов и ботов</title>
 <meta name="description" content="Разработчик: создаю игры, сайты и Telegram-ботов. Беру фриланс-заказы.">
 <style>
 :root{
@@ -123,6 +123,32 @@ header.nav.scrolled{background:rgba(11,13,23,.85);backdrop-filter:blur(12px);bor
 .filters button.active,.filters button:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .work.hide{display:none}
 
+
+/* Фото-слоты */
+.avatar img{position:absolute;inset:10px;width:calc(100% - 20px);height:calc(100% - 20px);object-fit:cover;border-radius:20px;z-index:2}
+.thumb{position:relative;overflow:hidden}
+.photo{position:relative;overflow:hidden}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px}
+.gallery .photo{aspect-ratio:4/3;border-radius:14px;border:1px dashed var(--line);background:var(--card);display:grid;place-items:center;color:var(--muted);font-size:.85rem;text-align:center;padding:10px;transition:.3s}
+.gallery .photo:hover{border-color:var(--accent);transform:scale(1.02)}
+.gallery .photo:nth-child(1),.gallery .photo:nth-child(6){grid-column:span 2}
+.sub-title{margin-top:56px;font-size:1.3rem}
+
+/* Цены */
+.pricing{background:var(--bg2)}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.price-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;transition:.3s}
+.price-card:hover{border-color:var(--accent);transform:translateY(-6px)}
+.price-card h3{display:flex;align-items:center;gap:10px;margin-bottom:18px;font-size:1.2rem}
+.price-card ul{list-style:none}
+.price-card li{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:12px 0;border-bottom:1px dashed var(--line);font-size:.95rem}
+.price-card li:last-child{border-bottom:0}
+.price-card li span{color:var(--muted)}
+.price-card li b{white-space:nowrap;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:1.05rem}
+.price-note{margin-top:28px;color:var(--muted);font-size:.92rem;text-align:center}
+@media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}.gallery .photo:nth-child(1),.gallery .photo:nth-child(6){grid-column:span 2}}
+
 /* Process */
 .process{background:var(--bg2)}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;counter-reset:s}
@@ -187,11 +213,12 @@ footer{border-top:1px solid var(--line);padding:40px 0;background:var(--bg)}
 <!-- ШАПКА -->
 <header class="nav" id="nav">
   <div class="container nav-in">
-    <a href="#home" class="logo">Ваше<span>Имя</span>.dev</a>
+    <a href="#home" class="logo">tabyldiyevs<span>.dev</span></a>
     <button class="burger" id="burger" aria-label="Меню">☰</button>
     <nav class="menu" id="menu">
       <a href="#about">Обо мне</a>
       <a href="#services">Услуги</a>
+      <a href="#prices">Цены</a>
       <a href="#skills">Навыки</a>
       <a href="#works">Проекты</a>
       <a href="#process">Процесс</a>
@@ -223,7 +250,7 @@ footer{border-top:1px solid var(--line);padding:40px 0;background:var(--bg)}
   <div class="container">
     <div>
       <div class="badge"><span class="dot"></span> Открыт для фриланс-заказов</div>
-      <h1>Привет, я <span class="grad-text">Ваше Имя</span><br>Разрабатываю <span class="typed" id="typed"></span></h1>
+      <h1>Привет, я <span class="grad-text">tabyldiyevs</span><br>Разрабатываю <span class="typed" id="typed"></span></h1>
       <p>Создаю игры, сайты и Telegram-ботов — от идеи до готового продукта. Быстро, аккуратно и с вниманием к деталям.</p>
       <div class="hero-btns">
         <a href="#contact" class="btn btn-primary">Обсудить проект →</a>
@@ -250,7 +277,8 @@ footer{border-top:1px solid var(--line);padding:40px 0;background:var(--bg)}
 <!-- 2. ОБО МНЕ -->
 <section class="about" id="about">
   <div class="container about-grid">
-    <div class="avatar reveal"><span>👨‍💻</span></div>
+    <!-- ФОТО: положите свой снимок в images/me.jpg -->
+    <div class="avatar reveal"><span>👨‍💻</span><img src="images/me.jpg" alt="Моё фото" onerror="this.remove()"></div>
     <div class="reveal">
       <span class="eyebrow">Обо мне</span>
       <h2>Превращаю идеи в рабочие продукты</h2>
@@ -277,6 +305,38 @@ footer{border-top:1px solid var(--line);padding:40px 0;background:var(--bg)}
       <div class="card reveal"><div class="ico">🤖</div><h3>Боты</h3><p>Telegram-боты: приём заявок, оплата, рассылки, магазины, интеграции с CRM и API.</p></div>
       <div class="card reveal"><div class="ico">⚡</div><h3>Фриланс-заказы</h3><p>Правки, доработки, автоматизация и разовые задачи — быстро и по фиксированной цене.</p></div>
     </div>
+  </div>
+</section>
+
+<!-- ЦЕНЫ -->
+<section class="pricing" id="prices">
+  <div class="container">
+    <span class="eyebrow reveal">Цены</span>
+    <h2 class="reveal">Стоимость услуг</h2>
+    <p class="lead reveal">Ориентировочные цены. Точную стоимость назову после обсуждения задачи.</p>
+    <div class="price-grid">
+      <div class="price-card reveal"><h3>🌐 Сайты</h3><ul>
+        <li><span>Лендинг (одна страница)</span><b>от 50 000 <i class="cur">₸</i></b></li>
+        <li><span>Сайт-визитка / многостраничный</span><b>от 150 000 <i class="cur">₸</i></b></li>
+        <li><span>Интернет-магазин</span><b>от 300 000 <i class="cur">₸</i></b></li>
+      </ul></div>
+      <div class="price-card reveal"><h3>🤖 Боты</h3><ul>
+        <li><span>Простой Telegram-бот</span><b>от 20 000 <i class="cur">₸</i></b></li>
+        <li><span>Бот с оплатой и админкой</span><b>от 80 000 <i class="cur">₸</i></b></li>
+        <li><span>Бот-магазин с интеграциями</span><b>от 150 000 <i class="cur">₸</i></b></li>
+      </ul></div>
+      <div class="price-card reveal"><h3>🎮 Игры</h3><ul>
+        <li><span>Мини-игра для браузера</span><b>от 100 000 <i class="cur">₸</i></b></li>
+        <li><span>Прототип игры</span><b>от 200 000 <i class="cur">₸</i></b></li>
+        <li><span>Игра под ключ</span><b>от 400 000 <i class="cur">₸</i></b></li>
+      </ul></div>
+      <div class="price-card reveal"><h3>🎬 Другое</h3><ul>
+        <li><span>Монтаж одного видео</span><b>5 000 <i class="cur">₸</i></b></li>
+        <li><span>Правки и доработки</span><b>3 000 <i class="cur">₸</i>/час</b></li>
+        <li><span>Срочный заказ</span><b>+30%</b></li>
+      </ul></div>
+    </div>
+    <p class="price-note reveal">Работаю по предоплате 50%. Цена зависит от сложности и сроков.</p>
   </div>
 </section>
 
@@ -313,12 +373,23 @@ footer{border-top:1px solid var(--line);padding:40px 0;background:var(--bg)}
       <button data-f="bot">Боты</button>
     </div>
     <div class="works">
-      <article class="work" data-c="game"><div class="thumb t1">🕹️</div><div class="work-body"><small>Игра</small><h3>Space Runner</h3><p>Аркадная браузерная игра с рейтингом игроков и бесконечными уровнями.</p></div></article>
-      <article class="work" data-c="web"><div class="thumb t2">🛒</div><div class="work-body"><small>Сайт</small><h3>Интернет-магазин</h3><p>Каталог, корзина, онлайн-оплата и админ-панель для владельца.</p></div></article>
-      <article class="work" data-c="bot"><div class="thumb t3">💬</div><div class="work-body"><small>Бот</small><h3>Бот для записи клиентов</h3><p>Telegram-бот: выбор услуги, времени, напоминания и уведомления мастеру.</p></div></article>
-      <article class="work" data-c="game"><div class="thumb t4">🧩</div><div class="work-body"><small>Игра</small><h3>Puzzle Quest</h3><p>Мобильная головоломка с системой достижений и ежедневными заданиями.</p></div></article>
-      <article class="work" data-c="web"><div class="thumb t5">🚀</div><div class="work-body"><small>Сайт</small><h3>Лендинг для стартапа</h3><p>Продающая страница с анимациями, формой заявки и аналитикой.</p></div></article>
-      <article class="work" data-c="bot"><div class="thumb t6">🛍️</div><div class="work-body"><small>Бот</small><h3>Бот-магазин</h3><p>Каталог товаров в Telegram, приём платежей и учёт заказов.</p></div></article>
+      <article class="work" data-c="game"><div class="thumb t1">🕹️<img src="images/work-1.jpg" alt="Проект 1" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div><div class="work-body"><small>Игра</small><h3>Space Runner</h3><p>Аркадная браузерная игра с рейтингом игроков и бесконечными уровнями.</p></div></article>
+      <article class="work" data-c="web"><div class="thumb t2">🛒<img src="images/work-2.jpg" alt="Проект 2" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div><div class="work-body"><small>Сайт</small><h3>Интернет-магазин</h3><p>Каталог, корзина, онлайн-оплата и админ-панель для владельца.</p></div></article>
+      <article class="work" data-c="bot"><div class="thumb t3">💬<img src="images/work-3.jpg" alt="Проект 3" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div><div class="work-body"><small>Бот</small><h3>Бот для записи клиентов</h3><p>Telegram-бот: выбор услуги, времени, напоминания и уведомления мастеру.</p></div></article>
+      <article class="work" data-c="game"><div class="thumb t4">🧩<img src="images/work-4.jpg" alt="Проект 4" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div><div class="work-body"><small>Игра</small><h3>Puzzle Quest</h3><p>Мобильная головоломка с системой достижений и ежедневными заданиями.</p></div></article>
+      <article class="work" data-c="web"><div class="thumb t5">🚀<img src="images/work-5.jpg" alt="Проект 5" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div><div class="work-body"><small>Сайт</small><h3>Лендинг для стартапа</h3><p>Продающая страница с анимациями, формой заявки и аналитикой.</p></div></article>
+      <article class="work" data-c="bot"><div class="thumb t6">🛍️<img src="images/work-6.jpg" alt="Проект 6" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div><div class="work-body"><small>Бот</small><h3>Бот-магазин</h3><p>Каталог товаров в Telegram, приём платежей и учёт заказов.</p></div></article>
+    </div>
+
+    <h3 class="sub-title reveal">Скриншоты и фото</h3>
+    <div class="gallery reveal">
+      <!-- Положите картинки в папку images/ с именами gallery-1.jpg ... gallery-6.jpg -->
+      <div class="photo">📷 Фото 1<img src="images/gallery-1.jpg" alt="" onerror="this.remove()"></div>
+      <div class="photo">📷 Фото 2<img src="images/gallery-2.jpg" alt="" onerror="this.remove()"></div>
+      <div class="photo">📷 Фото 3<img src="images/gallery-3.jpg" alt="" onerror="this.remove()"></div>
+      <div class="photo">📷 Фото 4<img src="images/gallery-4.jpg" alt="" onerror="this.remove()"></div>
+      <div class="photo">📷 Фото 5<img src="images/gallery-5.jpg" alt="" onerror="this.remove()"></div>
+      <div class="photo">📷 Фото 6<img src="images/gallery-6.jpg" alt="" onerror="this.remove()"></div>
     </div>
   </div>
 </section>
@@ -360,9 +431,9 @@ footer{border-top:1px solid var(--line);padding:40px 0;background:var(--bg)}
       <h2>Давайте обсудим ваш проект</h2>
       <p class="lead" style="margin-bottom:24px">Напишите мне — отвечу в течение нескольких часов.</p>
       <div class="links">
-        <a href="https://t.me/your_username" target="_blank" rel="noopener"><span class="ico" style="margin:0">✈️</span><div><b>Telegram</b><small>@your_username</small></div></a>
-        <a href="mailto:you@example.com"><span class="ico" style="margin:0">✉️</span><div><b>Email</b><small>you@example.com</small></div></a>
-        <a href="https://github.com/your_username" target="_blank" rel="noopener"><span class="ico" style="margin:0">💻</span><div><b>GitHub</b><small>github.com/your_username</small></div></a>
+        <a href="https://t.me/tabyldiyevs" target="_blank" rel="noopener"><span class="ico" style="margin:0">✈️</span><div><b>Telegram</b><small>@tabyldiyevs</small></div></a>
+        <a href="mailto:tabyldiyevs@gmail.com"><span class="ico" style="margin:0">✉️</span><div><b>Email</b><small>tabyldiyevs@gmail.com</small></div></a>
+        <a href="https://github.com/tabyldiyevs" target="_blank" rel="noopener"><span class="ico" style="margin:0">💻</span><div><b>GitHub</b><small>github.com/tabyldiyevs</small></div></a>
       </div>
     </div>
     <form id="form" class="reveal" novalidate>
@@ -381,12 +452,12 @@ footer{border-top:1px solid var(--line);padding:40px 0;background:var(--bg)}
 <!-- ФУТЕР -->
 <footer>
   <div class="container foot">
-    <a href="#home" class="logo">Ваше<span>Имя</span>.dev</a>
-    <p>© <span id="year"></span> Ваше Имя. Все права защищены.</p>
+    <a href="#home" class="logo">tabyldiyevs<span>.dev</span></a>
+    <p>© <span id="year"></span> tabyldiyevs. Все права защищены.</p>
     <div class="soc">
-      <a href="https://t.me/your_username" target="_blank" rel="noopener" aria-label="Telegram">✈️</a>
-      <a href="https://github.com/your_username" target="_blank" rel="noopener" aria-label="GitHub">💻</a>
-      <a href="mailto:you@example.com" aria-label="Email">✉️</a>
+      <a href="https://t.me/tabyldiyevs" target="_blank" rel="noopener" aria-label="Telegram">✈️</a>
+      <a href="https://github.com/tabyldiyevs" target="_blank" rel="noopener" aria-label="GitHub">💻</a>
+      <a href="mailto:tabyldiyevs@gmail.com" aria-label="Email">✉️</a>
     </div>
   </div>
 </footer>
@@ -473,12 +544,16 @@ document.getElementById('form').addEventListener('submit',e=>{
   const msg=document.getElementById('msg');
   if(!name||!contact||!text){msg.className='msg err';msg.textContent='Пожалуйста, заполните все поля.';return}
   const body=`Имя: ${name}\nКонтакт: ${contact}\nТип: ${type}\n\n${text}`;
-  location.href='mailto:you@example.com?subject='+encodeURIComponent('Заявка с сайта: '+type)+'&body='+encodeURIComponent(body);
+  location.href='mailto:tabyldiyevs@gmail.com?subject='+encodeURIComponent('Заявка с сайта: '+type)+'&body='+encodeURIComponent(body);
   msg.className='msg ok';msg.textContent='Спасибо! Открываю почтовый клиент для отправки…';
   e.target.reset();
 });
 
 document.getElementById('year').textContent=new Date().getFullYear();
+
+// Валюта для всех цен (сейчас тенге)
+const CURRENCY='₸';
+document.querySelectorAll('.cur').forEach(c=>{c.textContent=CURRENCY;c.style.fontStyle='normal'});
 </script>
 </body>
 </html>
