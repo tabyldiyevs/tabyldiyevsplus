@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ваше Имя — разработчик игр, сайтов и ботов</title>
+<meta name="description" content="Разработчик: создаю игры, сайты и Telegram-ботов. Беру фриланс-заказы.">
+<style>
+:root{
+  --bg:#0b0d17;
+  --bg2:#11142a;
+  --card:#161a33;
+  --line:#242a4d;
+  --text:#e9ebf7;
+  --muted:#9aa1c7;
+  --accent:#7c5cff;
+  --accent2:#22d3ee;
+  --grad:linear-gradient(135deg,var(--accent),var(--accent2));
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.container{width:min(1120px,92%);margin-inline:auto}
+section{padding:96px 0;position:relative}
+.eyebrow{display:inline-block;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:12px;font-weight:600}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.15;margin-bottom:14px}
+.lead{color:var(--muted);max-width:620px;margin-bottom:48px}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-weight:600;border:1px solid transparent;cursor:pointer;font-size:1rem;transition:.25s;font-family:inherit}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 10px 30px -10px rgba(124,92,255,.7)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 36px -10px rgba(124,92,255,.9)}
+.btn-ghost{border-color:var(--line);color:var(--text);background:rgba(255,255,255,.03)}
+.btn-ghost:hover{border-color:var(--accent);background:rgba(124,92,255,.1)}
+
+/* Header */
+header.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:.3s}
+header.nav.scrolled{background:rgba(11,13,23,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+.logo span{color:var(--accent2)}
+.menu{display:flex;gap:28px;align-items:center}
+.menu a{color:var(--muted);font-size:.95rem;transition:.2s}
+.menu a:hover{color:#fff}
+.burger{display:none;background:none;border:0;color:#fff;font-size:1.8rem;cursor:pointer}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg svg{width:100%;height:100%}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,var(--bg) 0%,transparent 60%);z-index:1;pointer-events:none}
+.hero .container{position:relative;z-index:2;display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;font-size:.85rem;color:var(--muted);background:rgba(255,255,255,.04);margin-bottom:22px}
+.dot{width:8px;height:8px;background:#22c55e;border-radius:50%;box-shadow:0 0 0 0 rgba(34,197,94,.7);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+.hero h1{font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:20px}
+.hero p{color:var(--muted);font-size:1.15rem;max-width:520px;margin-bottom:34px}
+.typed{color:var(--accent2);border-right:2px solid var(--accent2);padding-right:4px;animation:blink .8s infinite}
+@keyframes blink{50%{border-color:transparent}}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.code-card{background:rgba(22,26,51,.85);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 30px 80px -30px rgba(124,92,255,.5);backdrop-filter:blur(6px);animation:float 6s ease-in-out infinite;font-family:"JetBrains Mono",Consolas,monospace;font-size:.85rem}
+@keyframes float{50%{transform:translateY(-12px)}}
+.code-top{display:flex;gap:7px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.code-top i{width:11px;height:11px;border-radius:50%;background:#ff5f57}
+.code-top i:nth-child(2){background:#febc2e}.code-top i:nth-child(3){background:#28c840}
+.code-card pre{padding:20px;color:#c9d1ff;overflow:auto;line-height:1.7}
+.k{color:#c792ea}.s{color:#c3e88d}.f{color:#82aaff}.c{color:#5c6490}
+
+/* About */
+.about{background:var(--bg2)}
+.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
+.avatar{aspect-ratio:1;border-radius:28px;background:var(--grad);position:relative;display:grid;place-items:center;font-size:6rem;box-shadow:0 30px 80px -30px rgba(124,92,255,.6)}
+.avatar::before{content:"";position:absolute;inset:10px;border-radius:20px;background:var(--card);z-index:0}
+.avatar span{position:relative;z-index:1}
+.about p{color:var(--muted);margin-bottom:16px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;text-align:center}
+.stat b{display:block;font-size:2rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat small{color:var(--muted)}
+
+/* Services */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;transition:.3s;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0;background:var(--grad);opacity:0;transition:.3s;z-index:0}
+.card:hover{transform:translateY(-6px);border-color:var(--accent)}
+.card:hover::before{opacity:.07}
+.card>*{position:relative;z-index:1}
+.ico{width:54px;height:54px;border-radius:14px;background:rgba(124,92,255,.15);display:grid;place-items:center;font-size:1.7rem;margin-bottom:18px}
+.card h3{margin-bottom:8px;font-size:1.2rem}
+.card p{color:var(--muted);font-size:.95rem}
+
+/* Skills */
+.skills{background:var(--bg2)}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 56px}
+.skill .row{display:flex;justify-content:space-between;margin-bottom:8px;font-weight:600;font-size:.95rem}
+.skill .row span:last-child{color:var(--muted)}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--grad);border-radius:99px;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px}
+.tags span{padding:8px 16px;border:1px solid var(--line);border-radius:999px;font-size:.88rem;color:var(--muted);background:var(--card)}
+
+/* Portfolio */
+.works{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.work{border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--line);transition:.3s}
+.work:hover{transform:translateY(-6px);border-color:var(--accent)}
+.thumb{height:190px;display:grid;place-items:center;font-size:3.4rem}
+.t1{background:linear-gradient(135deg,#7c5cff,#ec4899)}
+.t2{background:linear-gradient(135deg,#0ea5e9,#22d3ee)}
+.t3{background:linear-gradient(135deg,#f59e0b,#ef4444)}
+.t4{background:linear-gradient(135deg,#10b981,#06b6d4)}
+.t5{background:linear-gradient(135deg,#6366f1,#8b5cf6)}
+.t6{background:linear-gradient(135deg,#ec4899,#f97316)}
+.work-body{padding:22px}
+.work-body small{color:var(--accent2);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem}
+.work-body h3{margin:6px 0 8px}
+.work-body p{color:var(--muted);font-size:.93rem}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+.filters button{padding:9px 20px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;font-family:inherit;transition:.2s}
+.filters button.active,.filters button:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.work.hide{display:none}
+
+/* Process */
+.process{background:var(--bg2)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;counter-reset:s}
+.step{padding:28px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);counter-increment:s}
+.step::before{content:"0" counter(s);font-size:2.4rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;display:block;margin-bottom:8px}
+.step h3{margin-bottom:6px}
+.step p{color:var(--muted);font-size:.93rem}
+
+/* Reviews */
+.review{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+.review p{font-style:italic;color:#cfd3ee;margin-bottom:20px}
+.who{display:flex;gap:12px;align-items:center}
+.who i{width:44px;height:44px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-style:normal;font-weight:700}
+.who b{display:block;line-height:1.2}
+.who small{color:var(--muted)}
+.stars{color:#fbbf24;margin-bottom:10px;letter-spacing:2px}
+
+/* Contact */
+.contact{background:var(--bg2)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.links{display:flex;flex-direction:column;gap:14px;margin-top:10px}
+.links a{display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--card);border:1px solid var(--line);border-radius:14px;transition:.25s}
+.links a:hover{border-color:var(--accent);transform:translateX(6px)}
+.links b{display:block}.links small{color:var(--muted)}
+form{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;display:grid;gap:16px}
+label{font-size:.88rem;color:var(--muted);display:grid;gap:6px}
+input,select,textarea{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:inherit;outline:none;transition:.2s}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,255,.2)}
+textarea{min-height:110px;resize:vertical}
+.msg{font-size:.9rem;min-height:1.2em}
+.msg.ok{color:#22c55e}.msg.err{color:#f87171}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:40px 0;background:var(--bg)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.foot p{color:var(--muted);font-size:.9rem}
+.soc{display:flex;gap:12px}
+.soc a{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:.2s}
+.soc a:hover{background:var(--accent);border-color:var(--accent)}
+.to-top{position:fixed;right:22px;bottom:22px;width:46px;height:46px;border-radius:50%;background:var(--grad);border:0;color:#fff;font-size:1.2rem;cursor:pointer;opacity:0;pointer-events:none;transition:.3s;z-index:40}
+.to-top.show{opacity:1;pointer-events:auto}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}
+.reveal.in{opacity:1;transform:none}
+
+/* Responsive */
+@media(max-width:900px){
+  .hero .container,.about-grid,.contact-grid,.skills-grid{grid-template-columns:1fr}
+  .code-card{display:none}
+  .avatar{max-width:260px}
+  section{padding:72px 0}
+  .burger{display:block}
+  .menu{position:fixed;top:72px;left:0;right:0;flex-direction:column;background:rgba(11,13,23,.97);padding:24px;gap:20px;border-bottom:1px solid var(--line);transform:translateY(-130%);transition:.3s}
+  .menu.open{transform:none}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- ШАПКА -->
+<header class="nav" id="nav">
+  <div class="container nav-in">
+    <a href="#home" class="logo">Ваше<span>Имя</span>.dev</a>
+    <button class="burger" id="burger" aria-label="Меню">☰</button>
+    <nav class="menu" id="menu">
+      <a href="#about">Обо мне</a>
+      <a href="#services">Услуги</a>
+      <a href="#skills">Навыки</a>
+      <a href="#works">Проекты</a>
+      <a href="#process">Процесс</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contact" class="btn btn-primary" style="padding:10px 20px;color:#fff">Связаться</a>
+    </nav>
+  </div>
+</header>
+
+<!-- 1. HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg" aria-hidden="true">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="g1" cx="20%" cy="25%" r="50%"><stop offset="0" stop-color="#7c5cff" stop-opacity=".55"/><stop offset="1" stop-color="#7c5cff" stop-opacity="0"/></radialGradient>
+        <radialGradient id="g2" cx="85%" cy="70%" r="45%"><stop offset="0" stop-color="#22d3ee" stop-opacity=".4"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></radialGradient>
+        <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M60 0H0V60" fill="none" stroke="#fff" stroke-opacity=".05"/></pattern>
+      </defs>
+      <rect width="1440" height="900" fill="#0b0d17"/>
+      <rect width="1440" height="900" fill="url(#grid)"/>
+      <rect width="1440" height="900" fill="url(#g1)"/>
+      <rect width="1440" height="900" fill="url(#g2)"/>
+      <g fill="none" stroke="#7c5cff" stroke-opacity=".35">
+        <circle cx="1180" cy="200" r="120"/><circle cx="1180" cy="200" r="190" stroke-opacity=".18"/><circle cx="1180" cy="200" r="270" stroke-opacity=".1"/>
+      </g>
+      <g fill="#22d3ee" id="stars"></g>
+    </svg>
+  </div>
+  <div class="container">
+    <div>
+      <div class="badge"><span class="dot"></span> Открыт для фриланс-заказов</div>
+      <h1>Привет, я <span class="grad-text">Ваше Имя</span><br>Разрабатываю <span class="typed" id="typed"></span></h1>
+      <p>Создаю игры, сайты и Telegram-ботов — от идеи до готового продукта. Быстро, аккуратно и с вниманием к деталям.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-primary">Обсудить проект →</a>
+        <a href="#works" class="btn btn-ghost">Смотреть работы</a>
+      </div>
+    </div>
+    <div class="code-card" aria-hidden="true">
+      <div class="code-top"><i></i><i></i><i></i></div>
+<pre><span class="c">// developer.js</span>
+<span class="k">const</span> me = {
+  role: <span class="s">"Разработчик"</span>,
+  makes: [<span class="s">"игры"</span>, <span class="s">"сайты"</span>, <span class="s">"боты"</span>],
+  freelance: <span class="k">true</span>,
+  coffee: <span class="k">Infinity</span>
+};
+
+<span class="k">function</span> <span class="f">hire</span>(you) {
+  <span class="k">return</span> <span class="s">"Давайте сделаем крутое!"</span>;
+}</pre>
+    </div>
+  </div>
+</section>
+
+<!-- 2. ОБО МНЕ -->
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="avatar reveal"><span>👨‍💻</span></div>
+    <div class="reveal">
+      <span class="eyebrow">Обо мне</span>
+      <h2>Превращаю идеи в рабочие продукты</h2>
+      <p>Я разработчик-универсал. Делаю игры, которые затягивают, сайты, которые приносят клиентов, и ботов, которые экономят время и деньги.</p>
+      <p>Работаю на фрилансе: сам веду проект от обсуждения задачи до запуска и поддержки. Отвечаю быстро, соблюдаю сроки и всегда держу вас в курсе.</p>
+      <div class="stats">
+        <div class="stat"><b data-count="50">0</b><small>проектов</small></div>
+        <div class="stat"><b data-count="30">0</b><small>клиентов</small></div>
+        <div class="stat"><b data-count="4">0</b><small>года опыта</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. УСЛУГИ -->
+<section id="services">
+  <div class="container">
+    <span class="eyebrow reveal">Услуги</span>
+    <h2 class="reveal">Что я могу для вас сделать</h2>
+    <p class="lead reveal">Четыре направления, в которых я работаю чаще всего.</p>
+    <div class="cards">
+      <div class="card reveal"><div class="ico">🎮</div><h3>Разработка игр</h3><p>2D/3D-игры, мини-игры для браузера и мобильных платформ, прототипы и полноценные релизы.</p></div>
+      <div class="card reveal"><div class="ico">🌐</div><h3>Сайты и лендинги</h3><p>Адаптивная вёрстка, интернет-магазины, корпоративные сайты и веб-приложения под ключ.</p></div>
+      <div class="card reveal"><div class="ico">🤖</div><h3>Боты</h3><p>Telegram-боты: приём заявок, оплата, рассылки, магазины, интеграции с CRM и API.</p></div>
+      <div class="card reveal"><div class="ico">⚡</div><h3>Фриланс-заказы</h3><p>Правки, доработки, автоматизация и разовые задачи — быстро и по фиксированной цене.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. НАВЫКИ -->
+<section class="skills" id="skills">
+  <div class="container">
+    <span class="eyebrow reveal">Навыки</span>
+    <h2 class="reveal">Технологии, с которыми я работаю</h2>
+    <p class="lead reveal">Выбираю инструменты под задачу, а не наоборот.</p>
+    <div class="skills-grid">
+      <div class="skill reveal"><div class="row"><span>HTML / CSS</span><span>95%</span></div><div class="bar"><i data-w="95"></i></div></div>
+      <div class="skill reveal"><div class="row"><span>JavaScript</span><span>90%</span></div><div class="bar"><i data-w="90"></i></div></div>
+      <div class="skill reveal"><div class="row"><span>Python (боты)</span><span>88%</span></div><div class="bar"><i data-w="88"></i></div></div>
+      <div class="skill reveal"><div class="row"><span>Игровые движки</span><span>80%</span></div><div class="bar"><i data-w="80"></i></div></div>
+      <div class="skill reveal"><div class="row"><span>Node.js / API</span><span>85%</span></div><div class="bar"><i data-w="85"></i></div></div>
+      <div class="skill reveal"><div class="row"><span>Базы данных</span><span>78%</span></div><div class="bar"><i data-w="78"></i></div></div>
+    </div>
+    <div class="tags reveal">
+      <span>Git</span><span>React</span><span>Unity</span><span>Godot</span><span>aiogram</span><span>SQLite</span><span>PostgreSQL</span><span>Docker</span><span>REST API</span><span>Figma</span>
+    </div>
+  </div>
+</section>
+
+<!-- 5. ПРОЕКТЫ -->
+<section id="works">
+  <div class="container">
+    <span class="eyebrow reveal">Портфолио</span>
+    <h2 class="reveal">Избранные проекты</h2>
+    <p class="lead reveal">Замените эти карточки на свои реальные работы.</p>
+    <div class="filters reveal" id="filters">
+      <button class="active" data-f="all">Все</button>
+      <button data-f="game">Игры</button>
+      <button data-f="web">Сайты</button>
+      <button data-f="bot">Боты</button>
+    </div>
+    <div class="works">
+      <article class="work" data-c="game"><div class="thumb t1">🕹️</div><div class="work-body"><small>Игра</small><h3>Space Runner</h3><p>Аркадная браузерная игра с рейтингом игроков и бесконечными уровнями.</p></div></article>
+      <article class="work" data-c="web"><div class="thumb t2">🛒</div><div class="work-body"><small>Сайт</small><h3>Интернет-магазин</h3><p>Каталог, корзина, онлайн-оплата и админ-панель для владельца.</p></div></article>
+      <article class="work" data-c="bot"><div class="thumb t3">💬</div><div class="work-body"><small>Бот</small><h3>Бот для записи клиентов</h3><p>Telegram-бот: выбор услуги, времени, напоминания и уведомления мастеру.</p></div></article>
+      <article class="work" data-c="game"><div class="thumb t4">🧩</div><div class="work-body"><small>Игра</small><h3>Puzzle Quest</h3><p>Мобильная головоломка с системой достижений и ежедневными заданиями.</p></div></article>
+      <article class="work" data-c="web"><div class="thumb t5">🚀</div><div class="work-body"><small>Сайт</small><h3>Лендинг для стартапа</h3><p>Продающая страница с анимациями, формой заявки и аналитикой.</p></div></article>
+      <article class="work" data-c="bot"><div class="thumb t6">🛍️</div><div class="work-body"><small>Бот</small><h3>Бот-магазин</h3><p>Каталог товаров в Telegram, приём платежей и учёт заказов.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- 6. ПРОЦЕСС -->
+<section class="process" id="process">
+  <div class="container">
+    <span class="eyebrow reveal">Как я работаю</span>
+    <h2 class="reveal">Простой и прозрачный процесс</h2>
+    <p class="lead reveal">Без сюрпризов: вы всегда знаете, что происходит с проектом.</p>
+    <div class="steps">
+      <div class="step reveal"><h3>Обсуждение</h3><p>Разбираем задачу, цели и пожелания. Отвечаю на вопросы и предлагаю решение.</p></div>
+      <div class="step reveal"><h3>Оценка</h3><p>Называю точную стоимость и сроки. Фиксируем всё в договорённости.</p></div>
+      <div class="step reveal"><h3>Разработка</h3><p>Делаю проект по этапам и показываю промежуточные результаты.</p></div>
+      <div class="step reveal"><h3>Запуск</h3><p>Тестирую, публикую и обучаю работе. После — поддержка и доработки.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. ОТЗЫВЫ -->
+<section id="reviews">
+  <div class="container">
+    <span class="eyebrow reveal">Отзывы</span>
+    <h2 class="reveal">Что говорят клиенты</h2>
+    <p class="lead reveal">Замените на реальные отзывы ваших заказчиков.</p>
+    <div class="cards">
+      <div class="review reveal"><div class="stars">★★★★★</div><p>«Бот заработал уже через два дня. Всё чётко, без лишних вопросов. Рекомендую!»</p><div class="who"><i>А</i><div><b>Алексей</b><small>владелец магазина</small></div></div></div>
+      <div class="review reveal"><div class="stars">★★★★★</div><p>«Сайт получился именно таким, как я представлял. Быстро вносил правки и сдал раньше срока.»</p><div class="who"><i>М</i><div><b>Мария</b><small>предприниматель</small></div></div></div>
+      <div class="review reveal"><div class="stars">★★★★★</div><p>«Классная игра для нашего стартапа. Отличная коммуникация и аккуратный код.»</p><div class="who"><i>Д</i><div><b>Дмитрий</b><small>продюсер</small></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. КОНТАКТЫ -->
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div class="reveal">
+      <span class="eyebrow">Контакты</span>
+      <h2>Давайте обсудим ваш проект</h2>
+      <p class="lead" style="margin-bottom:24px">Напишите мне — отвечу в течение нескольких часов.</p>
+      <div class="links">
+        <a href="https://t.me/your_username" target="_blank" rel="noopener"><span class="ico" style="margin:0">✈️</span><div><b>Telegram</b><small>@your_username</small></div></a>
+        <a href="mailto:you@example.com"><span class="ico" style="margin:0">✉️</span><div><b>Email</b><small>you@example.com</small></div></a>
+        <a href="https://github.com/your_username" target="_blank" rel="noopener"><span class="ico" style="margin:0">💻</span><div><b>GitHub</b><small>github.com/your_username</small></div></a>
+      </div>
+    </div>
+    <form id="form" class="reveal" novalidate>
+      <label>Ваше имя<input type="text" id="name" placeholder="Иван" required></label>
+      <label>Контакт (Telegram или email)<input type="text" id="contactField" placeholder="@username или почта" required></label>
+      <label>Что нужно сделать?
+        <select id="type"><option>Сайт</option><option>Игра</option><option>Бот</option><option>Другое</option></select>
+      </label>
+      <label>Сообщение<textarea id="message" placeholder="Коротко опишите задачу..." required></textarea></label>
+      <button class="btn btn-primary" type="submit">Отправить заявку</button>
+      <div class="msg" id="msg"></div>
+    </form>
+  </div>
+</section>
+
+<!-- ФУТЕР -->
+<footer>
+  <div class="container foot">
+    <a href="#home" class="logo">Ваше<span>Имя</span>.dev</a>
+    <p>© <span id="year"></span> Ваше Имя. Все права защищены.</p>
+    <div class="soc">
+      <a href="https://t.me/your_username" target="_blank" rel="noopener" aria-label="Telegram">✈️</a>
+      <a href="https://github.com/your_username" target="_blank" rel="noopener" aria-label="GitHub">💻</a>
+      <a href="mailto:you@example.com" aria-label="Email">✉️</a>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Наверх">↑</button>
+
+<script>
+// Звёзды в шапке
+(function(){
+  const g=document.getElementById('stars');
+  const ns='http://www.w3.org/2000/svg';
+  for(let i=0;i<60;i++){
+    const c=document.createElementNS(ns,'circle');
+    c.setAttribute('cx',Math.random()*1440);
+    c.setAttribute('cy',Math.random()*900);
+    c.setAttribute('r',(Math.random()*1.6+.4).toFixed(2));
+    c.setAttribute('opacity',(Math.random()*.6+.1).toFixed(2));
+    g.appendChild(c);
+  }
+})();
+
+// Печатающийся текст
+(function(){
+  const words=['игры','сайты','Telegram-ботов','ваши идеи'];
+  const el=document.getElementById('typed');
+  let w=0,i=0,del=false;
+  function tick(){
+    const word=words[w];
+    el.textContent=word.slice(0,i);
+    if(!del&&i<word.length){i++;setTimeout(tick,90)}
+    else if(!del){del=true;setTimeout(tick,1400)}
+    else if(i>0){i--;setTimeout(tick,45)}
+    else{del=false;w=(w+1)%words.length;setTimeout(tick,300)}
+  }
+  tick();
+})();
+
+// Меню и скролл
+const nav=document.getElementById('nav'),menu=document.getElementById('menu'),toTop=document.getElementById('toTop');
+document.getElementById('burger').addEventListener('click',()=>menu.classList.toggle('open'));
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>30);
+  toTop.classList.toggle('show',scrollY>600);
+});
+toTop.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+
+// Появление при скролле + счётчики + полосы навыков
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target;
+    el.classList.add('in');
+    el.querySelectorAll('[data-w]').forEach(b=>b.style.width=b.dataset.w+'%');
+    el.querySelectorAll('[data-count]').forEach(counter);
+    io.unobserve(el);
+  });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+function counter(el){
+  const target=+el.dataset.count;let n=0;
+  const step=Math.max(1,Math.ceil(target/40));
+  const t=setInterval(()=>{n+=step;if(n>=target){n=target;clearInterval(t)}el.textContent=n+'+'},35);
+}
+
+// Фильтр проектов
+document.getElementById('filters').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  document.querySelectorAll('#filters button').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  document.querySelectorAll('.work').forEach(w=>{
+    w.classList.toggle('hide',b.dataset.f!=='all'&&w.dataset.c!==b.dataset.f);
+  });
+});
+
+// Форма: открывает письмо с заполненными данными
+document.getElementById('form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const name=document.getElementById('name').value.trim();
+  const contact=document.getElementById('contactField').value.trim();
+  const type=document.getElementById('type').value;
+  const text=document.getElementById('message').value.trim();
+  const msg=document.getElementById('msg');
+  if(!name||!contact||!text){msg.className='msg err';msg.textContent='Пожалуйста, заполните все поля.';return}
+  const body=`Имя: ${name}\nКонтакт: ${contact}\nТип: ${type}\n\n${text}`;
+  location.href='mailto:you@example.com?subject='+encodeURIComponent('Заявка с сайта: '+type)+'&body='+encodeURIComponent(body);
+  msg.className='msg ok';msg.textContent='Спасибо! Открываю почтовый клиент для отправки…';
+  e.target.reset();
+});
+
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
